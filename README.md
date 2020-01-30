@@ -1,3 +1,7 @@
+## UPDATE
+
+- with the help of stack overflow turns out the issue is in beam 2.18.0
+
 ## Setup
 
 - Define `PROJECT` and `STAGING_BUCKET` in both `stage_template_python2.sh` and `stage_template_python3.sh`
@@ -5,8 +9,11 @@
 
 ## Reproduce Issue
 
-- running `stage_template_python2.sh` stages the template using pythong 2.7 and completes sucesfully
-- run `stage_template_python3.sh` fails with 
+- update requirements.txt to `apache-beam[gcp]==2.18.0` and run `pip3 install -r requirements`
+- running `stage_template_python3.sh` fails to stage the template
+- update requirements.txt to `apache-beam[gcp]<2.18.0` and run `pip3 install -r requirements`
+- running `stage_template_python3.sh` sucesfully stages the template
+
 
 ```
 apache_beam.error.RuntimeValueProviderError: RuntimeValueProvider(option: input, type: str, default_value: 'gs://dataflow-samples/shakespeare/kinglear.txt') not accessible
